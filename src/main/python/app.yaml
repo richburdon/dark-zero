@@ -1,0 +1,26 @@
+#
+# Copyright 2014 Alien Laboratories, Inc.
+#
+
+# https://developers.google.com/appengine/docs/python/config/appconfig
+
+application: dark-zero
+module: core
+version: 0-0-1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /resources
+  static_dir: resources
+
+- url: .*
+  script: main.app
+
+libraries:
+- name: PIL
+  version: latest
+- name: jinja2
+  version: latest
+
