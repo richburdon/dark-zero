@@ -14,6 +14,22 @@ module.exports = function(grunt) {
 
     clean: ['target'],
 
+    // TODO(burdon): Patch with local mods (e.g., app.yaml)
+    gitPull: {
+      all: {
+        repos: [
+          {
+            path: ['src', 'main', 'docker'],
+            repo: 'git@github.com:kbastani/spark-neo4j.git'
+          },
+          {
+            path: ['src', 'main', 'docker'],
+            repo: 'git@github.com:GoogleCloudPlatform/appengine-nginx-hello.git'
+          }
+        ]
+      }
+    },
+
     pydeps: {
       options: {
         packages: [
@@ -32,7 +48,7 @@ module.exports = function(grunt) {
     // Deploy to App Engine (via OAuth).
     // https://www.npmjs.org/package/grunt-gae
     // > gcloud auth login
-    // > gcloud config set project nexus-beta
+    // > gcloud config set project dark-zero
     // > grunt gae:update
     gcloud: {
       options: {
@@ -67,6 +83,7 @@ module.exports = function(grunt) {
 
   });
 
+  // Nexus task defs.
   grunt.task.loadTasks('../alienlaboratories/core/src/main/grunt/tasks');
 
   // https://github.com/gruntjs/grunt-contrib-clean
@@ -75,6 +92,10 @@ module.exports = function(grunt) {
   // https://www.npmjs.org/package/grunt-gae
   grunt.loadNpmTasks('grunt-gae');
 
+  // https://www.npmjs.com/package/grunt-gitpull
+  grunt.loadNpmTasks('grunt-gitPull');
+
+  // Default
   grunt.registerTask('default', ['gae']);
 
 };
