@@ -20,11 +20,15 @@ module.exports = function(grunt) {
         repos: [
           {
             path: ['src', 'main', 'docker'],
-            repo: 'git@github.com:kbastani/spark-neo4j.git'
+            repo: 'git@github.com:GoogleCloudPlatform/appengine-nginx-hello.git'
           },
           {
             path: ['src', 'main', 'docker'],
-            repo: 'git@github.com:GoogleCloudPlatform/appengine-nginx-hello.git'
+            repo: 'git@github.com:kbastani/docker-neo4j.git'
+          },
+          {
+            path: ['src', 'main', 'docker'],
+            repo: 'git@github.com:kbastani/spark-neo4j.git'
           }
         ]
       }
@@ -38,7 +42,8 @@ module.exports = function(grunt) {
           'injector.py',          // flask
           'itsdangerous.py',      // flask
           'werkzeug',             // flask
-          'yaml'                  // GAE
+          'yaml',                 // GAE
+          'py2neo'
         ]
       },
 

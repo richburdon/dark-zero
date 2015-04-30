@@ -30,6 +30,7 @@ class ViewModule(Module):
     def configure(self, binder):
         import view
         self.app.add_view(view.HomeView, 'Home')
+        self.app.add_view(view.DataView, 'Data')
 
 
 # Flask injector modules.

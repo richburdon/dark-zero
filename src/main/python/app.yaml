@@ -4,11 +4,10 @@
 
 # https://developers.google.com/appengine/docs/python/config/appconfig
 
-api_version: 1
-application: dark-zero
 module: frontend
 version: 0-0-1
 runtime: python27
+api_version: 1
 threadsafe: true
 
 handlers:
@@ -23,4 +22,5 @@ libraries:
   version: latest
 - name: jinja2
   version: latest
-
+- name: ssl                 # Required for py2neo
+  version: latest
