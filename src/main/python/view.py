@@ -12,6 +12,7 @@ class HomeView(flask.views.MethodView):
 
     def get(self):
         # https://cloud.google.com/appengine/docs/python/modules/functions
+        # https://cloud.google.com/appengine/docs/python/modules/routing
         from google.appengine.api import modules
         module_map = {}
         for module in modules.get_modules():
