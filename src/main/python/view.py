@@ -11,17 +11,7 @@ class HomeView(flask.views.MethodView):
     PATH = '/'
 
     def get(self):
-        # https://cloud.google.com/appengine/docs/python/modules/functions
-        # https://cloud.google.com/appengine/docs/python/modules/routing
-        from google.appengine.api import modules
-        module_map = {}
-        for module in modules.get_modules():
-            version = modules.get_default_version(module)
-            module_map[module] = {
-                'version': version,
-                'hostname': modules.get_hostname(module, version)
-            }
-        return flask.render_template('hello.html', modules=module_map)
+        return flask.render_template('hello.html')
 
 
 class DataView(flask.views.MethodView):

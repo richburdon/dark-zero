@@ -3,11 +3,6 @@
 # Copyright 2014 Alien Laboratories, Inc.
 #
 
-# Initial set-up (must happen first).
-import os
-import config
-config.init_paths(os.path.dirname(__file__))
-
 # Initial set-up.
 import logging
 LOG = logging.getLogger('main')
@@ -40,6 +35,6 @@ FlaskInjector(app=app, modules=[
     ViewModule,
 ])
 
-
-# Note: We don't need to call app.run() since we are embedded within the App Engine WSGI application server.
+# Start-up.
 LOG.info('Running...')
+app.run()
