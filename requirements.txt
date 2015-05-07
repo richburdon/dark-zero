@@ -1,5 +1,4 @@
 Flask
 Flask-Injector
 pyyaml
-
 py2neo
