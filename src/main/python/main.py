@@ -36,5 +36,6 @@ FlaskInjector(app=app, modules=[
 ])
 
 # Start-up.
-LOG.info('Running...')
-app.run()
+if __name__ == '__main__':
+    LOG.info('Running...')
+    app.run(host='0.0.0.0', port=80)

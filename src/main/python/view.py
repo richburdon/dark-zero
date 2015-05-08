@@ -4,6 +4,7 @@
 #
 
 import flask.views
+import os
 from py2neo import Graph, Node, Relationship
 
 
@@ -11,7 +12,8 @@ class HomeView(flask.views.MethodView):
     PATH = '/'
 
     def get(self):
-        return flask.render_template('hello.html')
+        graphdb = os.environ['GRAPHDB_PORT_7474_TCP_ADDR']
+        return flask.render_template('home.html', graphdb=graphdb)
 
 
 class DataView(flask.views.MethodView):
@@ -19,14 +21,13 @@ class DataView(flask.views.MethodView):
 
     # TODO(burdon): Init + query paths
     def get(self):
-        graph = Graph('http://0.0.0.0:7474/db/data/')
-        import logging
-        logging.info(graph)
+        graphdb = os.environ['GRAPHDB_PORT_7474_TCP_ADDR']
+        graph = Graph('http://' + graphdb + ':7474/db/data/')
 
         p1 = Node("Person", name="Alice")
         p2 = Node("Person", name="Bob")
         rel = Relationship(p1, "friend", p2)
-        logging.info(rel)
         graph.create(rel)
 
-        return flask.render_template('status.html')
+        info = str(rel)
+        return flask.render_template('status.html', info=info)
