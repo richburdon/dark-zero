@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 #
 # Copyright 2014 Alien Laboratories, Inc.
 #

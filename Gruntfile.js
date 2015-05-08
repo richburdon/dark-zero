@@ -9,83 +9,35 @@ module.exports = function(grunt) {
     //
     pkg: grunt.file.readJSON('package.json'),
 
-    // GAE dev_appserver runtime files.
-    appserver: 'target/appserver',
-
     clean: ['target'],
-
-    // TODO(burdon): Patch with local mods (e.g., app.yaml)
-    gitPull: {
-      all: {
-        repos: [
-          {
-            path: ['src', 'main', 'docker'],
-            repo: 'git@github.com:GoogleCloudPlatform/appengine-nginx-hello.git'
-          },
-          {
-            path: ['src', 'main', 'docker'],
-            repo: 'git@github.com:kbastani/docker-neo4j.git'
-          },
-          {
-            path: ['src', 'main', 'docker'],
-            repo: 'git@github.com:kbastani/spark-neo4j.git'
-          }
-        ]
-      }
-    },
 
     pydeps: {
       options: {
-        packages: [
-          'flask',                // flask
-          'flask_injector.py',    // flask
-          'injector.py',          // flask
-          'itsdangerous.py',      // flask
-          'werkzeug',             // flask
-          'yaml',                 // GAE
-          'py2neo'
-        ]
+        packages: []
       },
 
       all: {}
     },
 
-    // Deploy to App Engine (via OAuth).
-    // https://www.npmjs.org/package/grunt-gae
-    // > gcloud auth login
-    // > gcloud config set project dark-zero
-    // > grunt gae:update
-    gcloud: {
+    // Python tests.
+    // NOTE: Add nose, nose-exclude to requirements.txt
+    // https://www.npmjs.org/package/grunt-nose
+    // http://nose.readthedocs.org/en/latest/man.html
+    // To run tests manually:
+    // ./tools/python/bin/python src/main/python/test.py
+    nose: {
       options: {
-        project: 'dark-zero'
-      }
-    },
-
-    // App Engine
-    gae: {
-      options: {
-        path: 'src/main/python'
+        stop: true,
+//      collect_only: true,
+        virtualenv: 'tools/python',
+        config: 'nose.cfg'
       },
-      run: {
-        action: 'run',
-        options: {
-          args: {
-            dev_appserver_log_level: 'error',
-            storage_path: '<%= appserver %>'
-          }
-        }
-      },
-      kill: {
-        action: 'kill'
-      },
-      update: {
-        action: 'update'
-      },
-      rollback: {
-        action: 'rollback'
+      main: {
+        src: [
+          'src/main/python'
+        ]
       }
     }
-
   });
 
   // Nexus task defs.
@@ -94,11 +46,8 @@ module.exports = function(grunt) {
   // https://github.com/gruntjs/grunt-contrib-clean
   grunt.loadNpmTasks('grunt-contrib-clean');
 
-  // https://www.npmjs.org/package/grunt-gae
-  grunt.loadNpmTasks('grunt-gae');
-
-  // https://www.npmjs.com/package/grunt-gitpull
-  grunt.loadNpmTasks('grunt-gitPull');
+  // https://www.npmjs.org/package/grunt-nose
+  grunt.loadNpmTasks('grunt-nose');
 
   // Default
   grunt.registerTask('default', ['gae']);

@@ -1,4 +1,6 @@
 Flask
 Flask-Injector
+nose
+nose-exclude
 pyyaml
 py2neo

@@ -35,4 +35,5 @@ docker ps
 PORT=$(docker port web | cut -d ':' -f 2)
 echo $(boot2docker ip):${PORT}
 curl $(boot2docker ip):${PORT}
+curl $(boot2docker ip):${PORT}/data
 echo ""
