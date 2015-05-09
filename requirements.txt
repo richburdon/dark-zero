@@ -1,6 +1,10 @@
 Flask
 Flask-Injector
+
 nose
 nose-exclude
+tox
+
 pyyaml
 py2neo
+
