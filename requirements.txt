@@ -1,6 +1,12 @@
 Flask
 Flask-Injector
+Flask-OAuth
+flask-environments
+
+mock
 nose
 nose-exclude
+tox
+
 pyyaml
 py2neo

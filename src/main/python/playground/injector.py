@@ -7,6 +7,8 @@ from flask_injector import FlaskInjector
 from injector import inject, singleton, Module
 
 
+# NOTE: Objects MUST inherit from object.
+# http://stackoverflow.com/questions/54867/what-is-the-difference-between-old-style-and-new-style-classes-in-python
 @singleton
 class Foo(object):
     def __init__(self):

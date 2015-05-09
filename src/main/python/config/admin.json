@@ -1,0 +1,10 @@
+{
+  "links": {
+    "Github":                 "https://github.com/richburdon/dark-zero",
+    "Docker Hub":             "https://registry.hub.docker.com/u/richburdon/dark-zero",
+    "Circle CI":              "https://circleci.com/gh/richburdon/dark-zero",
+    "Digital Ocean Droplet":  "https://cloud.digitalocean.com/droplets/5205329",
+    "Frontend Prod":          "http://45.55.200.124",
+    "Graph Console":          "http://__SERVER__:7474"
+  }
+}

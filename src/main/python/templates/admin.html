@@ -1,0 +1,20 @@
+<h1>Admin</h1>
+
+<h2>Meta</h2>
+<table>
+  <tr>
+    <td>Prod</td>
+    <td>{{ app.config['PROD'] }}</td>
+  </tr>
+  <tr>
+    <td>GraphDB</td>
+    <td>{{ config.graph_host }}</td>
+  </tr>
+</table>
+
+<h2>Links</h2>
+<ul>
+  {% for key in admin['links'] %}
+  <li><a href="{{ admin['links'][key] }}" target="ADMIN_LINK">{{ key }}</a></li>
+  {% endfor %}
+</ul>

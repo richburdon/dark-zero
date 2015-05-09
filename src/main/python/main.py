@@ -3,52 +3,50 @@
 #
 
 import flask
+from flask_environments import Environments
 from flask_injector import FlaskInjector
 from injector import inject, Module
 import logging
-import util
+import os
 
-import config
+from config import ConfigModule
+import util
 
 LOG = logging.getLogger('main')
 
 
-class Foo(object):
-    pass
-
-
-@inject(foo=Foo)
-class Bar(object):
-    pass
-
-
 #
-# App config
+# App config.
 #
 class AppModule(Module):
     def configure(self, binder):
-        binder.bind(Foo, Foo())
+        pass
 
 #
-# View config
+# View config.
 #
 import view
-@inject(app=util.FlaskWrapper, bar=Bar)
+@inject(app=util.FlaskWrapper)
 class ViewModule(Module):
     def configure(self, binder):
-        self.app.add_view(view.HomeView, 'Home')
-        self.app.add_view(view.DataView, 'Data')
+        self.app.add_view(view.HomeView)
+        self.app.add_view(view.AdminView)
+        self.app.add_view(view.DataView)
 
 #
-# Flask App
+# Flask App.
 #
 app = flask.Flask(__name__, template_folder='templates')
-app.config.from_pyfile('config/flask_debug.py')
+
+# Runtime environment (FLASK_ENV)
+# https://pythonhosted.org/Flask-Environments
+env = Environments(app)
+env.from_yaml(os.path.join(os.getcwd(), 'config/config.yml'))
 
 # Flask injection modules.
 # https://github.com/alecthomas/injector
 FlaskInjector(app=app, modules=[
-    config.DevConfigModule,
+    ConfigModule,
     AppModule,
     ViewModule,
 ])
@@ -58,4 +56,4 @@ FlaskInjector(app=app, modules=[
 #
 if __name__ == '__main__':
     LOG.info('Running...')
-    app.run(host='0.0.0.0', port=8080)  # TODO(burdon): Port from config.
+    app.run(host='0.0.0.0', port=app.config['PORT'])

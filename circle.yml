@@ -1,0 +1,31 @@
+# NOTE: Put any CircleCI overrides in this file.
+# https://circleci.com/docs/manually
+# https://circleci.com/docs/language-python
+# https://circleci.com/docs/docker
+
+machine:
+  services:
+    - docker
+
+dependencies:
+  # https://circleci.com/docs/docker#caching-docker-layers
+  cache_directories:
+    - "~/docker"
+
+  override:
+    - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
+    - docker build -t richburdon/dark-zero .
+    - mkdir -p ~/docker; docker save richburdon/dark-zero > ~/docker/image.tar
+
+# TODO(burdon): Need graphdb dependency to run in test.
+#test:
+#  override:
+#    - docker run -d -p 8080 --link graphdb:graphdb richburdon/dark-zero
+
+deployment:
+  # Set environment variables in console.
+  hub:
+    branch: master
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push richburdon/dark-zero
