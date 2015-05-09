@@ -1,5 +1,6 @@
 # https://circleci.com/docs/manually
+# https://circleci.com/docs/language-python
 
 test:
   override:
-    - python src/main/python/tests.py
+    - nosetests src/main/python
