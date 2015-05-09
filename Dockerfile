@@ -27,6 +27,7 @@ ADD . /app
 RUN pip install -r requirements.txt
 
 # Expose (default Flask port)
+# NOTE: Port 80 requires sudo
 EXPOSE 8080
 
 # TODO(burdon): nginx

@@ -26,7 +26,7 @@ echo "### Starting web"
 docker build -t app .
 # Link database
 # https://docs.docker.com/userguide/dockerlinks
-docker run -d -p 80 --name web --link graphdb:graphdb app
+docker run -d -p 8080 --name web --link graphdb:graphdb app
 echo ""
 
 # Test

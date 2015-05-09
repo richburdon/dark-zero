@@ -8,9 +8,14 @@ machine:
     - docker
 
 dependencies:
+  # https://circleci.com/docs/docker#caching-docker-layers
+  cache_directories:
+    - "~/docker"
+
   override:
-    - docker info
+    - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
     - docker build -t richburdon/dark-zero .
+    - mkdir -p ~/docker; docker save richburdon/dark-zero > ~/docker/image.tar
 
 # TODO(burdon): Need graphdb dependency to run in test.
 #test:
