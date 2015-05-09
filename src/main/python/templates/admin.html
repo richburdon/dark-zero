@@ -1,0 +1,5 @@
+<ul>
+  {% for key in admin['links'] %}
+  <li><a href="{{ admin['links'][key] }}" target="ADMIN_LINK">{{ key }}</a></li>
+  {% endfor %}
+</ul>

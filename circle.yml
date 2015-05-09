@@ -1,6 +1,4 @@
 # https://circleci.com/docs/manually
 # https://circleci.com/docs/language-python
-
-#test:
-#  override:
-#    - nosetests src/main/python
+# NOTE: Put any CircleCI overrides in this file.
+# Add Chrome Monitor (https://chrome.google.com/webstore/detail/circleci-monitor/pkdkfaokllclembpkggkndfejdhcpmpk?hl=en)

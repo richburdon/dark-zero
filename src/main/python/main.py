@@ -36,8 +36,9 @@ import view
 @inject(app=util.FlaskWrapper, bar=Bar)
 class ViewModule(Module):
     def configure(self, binder):
-        self.app.add_view(view.HomeView, 'Home')
-        self.app.add_view(view.DataView, 'Data')
+        self.app.add_view(view.HomeView)
+        self.app.add_view(view.AdminView)
+        self.app.add_view(view.DataView)
 
 #
 # Flask App

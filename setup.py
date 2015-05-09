@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 
+#
+# Used by distutils.
+# https://docs.python.org/2/distutils/introduction.html
+# https://docs.python.org/2/distutils/setupscript.html
+#
+
 from distutils.core import setup
 
 setup(

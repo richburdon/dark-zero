@@ -1,6 +1,8 @@
 Flask
 Flask-Injector
+Flask-OAuth
 
+mock
 nose
 nose-exclude
 tox

@@ -10,16 +10,17 @@ from injector import inject
 @inject(app=flask.Flask)
 class FlaskWrapper(object):
 
-    def add_view(self, view, name):
+    def add_view(self, view):
         """
         http://flask.pocoo.org/docs/views
         http://flask.pocoo.org/docs/api/?highlight=add_url_rule#flask.Flask.add_url_rule
         """
 
-        route = view.PATH
-        assert route
+        assert view.PATH
+        assert view.NAME
 
-        view_func = view.as_view(name)
+        route = view.PATH
+        view_func = view.as_view(view.NAME)
         if isinstance(route, str):
             self.app.add_url_rule(route, view_func=view_func)
         else:
