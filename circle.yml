@@ -12,9 +12,10 @@ dependencies:
     - docker info
     - docker build -t richburdon/dark-zero .
 
-test:
-  override:
-    - docker run -d -p 80 --link graphdb:graphdb richburdon/dark-zero
+# TODO(burdon): Need graphdb dependency to run in test.
+#test:
+#  override:
+#    - docker run -d -p 80 --link graphdb:graphdb richburdon/dark-zero
 
 deployment:
   hub:
