@@ -1,0 +1,16 @@
+# Debug configuration
+# https://pythonhosted.org/Flask-Environments
+
+COMMON: &common
+  DEBUG: False
+  TESTING: False
+  PORT: 8080
+
+DEVELOPMENT: &development
+  <<: *common
+  PROD: False
+  DEBUG: True
+
+PRODUCTION: &production
+  <<: *common
+  PROD: True

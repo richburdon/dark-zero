@@ -1,6 +1,8 @@
 #!/bin/sh
 # ssh root@45.55.200.124 'bash -s' < deploy_prod.sh
 
+export FLASK_ENV=PRODUCTION
+
 docker rm -f graphdb
 docker rm -f web
 

@@ -1,6 +1,7 @@
 Flask
 Flask-Injector
 Flask-OAuth
+flask-environments
 
 mock
 nose

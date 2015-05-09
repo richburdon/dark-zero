@@ -3,6 +3,7 @@
 #
 
 import flask.views
+from flask import Flask
 from injector import inject
 import json
 import os
@@ -21,7 +22,7 @@ class HomeView(flask.views.MethodView):
         return flask.render_template('home.html', config=self.config)
 
 
-@inject(config=Config)
+@inject(config=Config, app=Flask)
 class AdminView(flask.views.MethodView):
 
     PATH = '/admin'
@@ -32,7 +33,7 @@ class AdminView(flask.views.MethodView):
         # TODO(burdon): Reconcile static and dynamic config (e.g., hostname).
         # TODO(burdon): Make each object with title, etc.
         admin = json.loads(open(os.path.join(os.getcwd(), 'config/admin.json'), 'r').read())
-        return flask.render_template('admin.html', admin=admin)
+        return flask.render_template('admin.html', app=self.app, config=self.config, admin=admin)
 
 
 @inject(db=Database)
