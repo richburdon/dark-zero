@@ -3,8 +3,10 @@
 #
 
 import flask.views
-import json
 from injector import inject
+import json
+import os
+
 from config import Config
 from data import Database
 
@@ -28,7 +30,8 @@ class AdminView(flask.views.MethodView):
     def get(self):
         # Load admin meta data.
         # TODO(burdon): Reconcile static and dynamic config (e.g., hostname).
-        admin = json.loads(open('config/admin.json', 'r').read())
+        # TODO(burdon): Make each object with title, etc.
+        admin = json.loads(open(os.path.join(os.getcwd(), 'config/admin.json'), 'r').read())
         return flask.render_template('admin.html', admin=admin)
 
 

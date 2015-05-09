@@ -46,6 +46,8 @@ class ViewModule(Module):
 app = flask.Flask(__name__, template_folder='templates')
 app.config.from_pyfile('config/flask_debug.py')
 
+# TODO(burdon): Detech dev/prod.
+
 # Flask injection modules.
 # https://github.com/alecthomas/injector
 FlaskInjector(app=app, modules=[

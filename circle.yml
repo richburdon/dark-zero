@@ -20,9 +20,10 @@ dependencies:
 # TODO(burdon): Need graphdb dependency to run in test.
 #test:
 #  override:
-#    - docker run -d -p 80 --link graphdb:graphdb richburdon/dark-zero
+#    - docker run -d -p 8080 --link graphdb:graphdb richburdon/dark-zero
 
 deployment:
+  # Set environment variables in console.
   hub:
     branch: master
     commands:

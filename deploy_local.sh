@@ -5,7 +5,6 @@ boot2docker status
 $(boot2docker shellinit)
 echo ""
 
-# TODO(burdon): Move to Gruntfile/Fleet.
 echo "### Cleaning up"
 docker ps
 docker rm -f web
@@ -21,12 +20,15 @@ echo ""
 # Allow access from $(boot2docker ip):7474/browser
 # sudo route add -net 172.17.0.0/16 $(boot2docker ip 2> /dev/null)
 
+# TODO(burdon): Options.
+exit
+
 # Build a local image (from Dockerfile) and run it.
 echo "### Starting web"
-docker build -t app .
+docker build -t web .
 # Link database
 # https://docs.docker.com/userguide/dockerlinks
-docker run -d -p 8080 --name web --link graphdb:graphdb app
+docker run -d -p 8080 --link graphdb:graphdb --name web web
 echo ""
 
 # Test

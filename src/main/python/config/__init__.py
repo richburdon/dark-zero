@@ -34,5 +34,7 @@ class ProdConfigModule(Module):
     """
     """
     def configure(self, binder):
+        # https://docs.docker.com/userguide/dockerlinks/
         graphdb = os.environ['GRAPHDB_PORT_7474_TCP_ADDR']
+        print graphdb
         binder.bind(Config, to=Config(graphdb), scope=singleton)
