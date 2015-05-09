@@ -1,9 +1,8 @@
 # NOTE: Put any CircleCI overrides in this file.
-# Add Chrome Monitor (https://chrome.google.com/webstore/detail/circleci-monitor/pkdkfaokllclembpkggkndfejdhcpmpk?hl=en)
 # https://circleci.com/docs/manually
 # https://circleci.com/docs/language-python
-
 # https://circleci.com/docs/docker
+
 machine:
   services:
     - docker
@@ -12,3 +11,14 @@ dependencies:
   override:
     - docker info
     - docker build -t richburdon/dark-zero .
+
+test:
+  override:
+    - docker run -d -p 80 --link graphdb:graphdb richburdon/dark-zero
+
+deployment:
+  hub:
+    branch: master
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push richburdon/dark-zero
