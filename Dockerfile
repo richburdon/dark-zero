@@ -1,5 +1,7 @@
 # Copyright 2014 Alien Laboratories, Inc.
 
+# https://registry.hub.docker.com/u/richburdon/nexus
+
 # http://viget.com/extend/how-to-use-docker-on-os-x-the-missing-guide
 # https://www.digitalocean.com/community/tutorials/docker-explained-how-to-containerize-python-web-applications
 
@@ -31,5 +33,4 @@ EXPOSE 8080
 
 # TODO(burdon): nginx
 # Run the server
-#CMD ["python", "src/main/python/hello.py"]
 CMD ["python", "src/main/python/main.py"]
