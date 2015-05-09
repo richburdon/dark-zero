@@ -1,5 +1,8 @@
 {
   "links": {
-    "Circle CI": "https://circleci.com/gh/richburdon/dark-zero"
+    "Github":         "https://github.com/richburdon/dark-zero",
+    "Docker Hub":     "https://registry.hub.docker.com/u/richburdon/dark-zero",
+    "Circle CI":      "https://circleci.com/gh/richburdon/dark-zero",
+    "Digital Ocean":  "https://cloud.digitalocean.com/droplets/5205329"
   }
 }
