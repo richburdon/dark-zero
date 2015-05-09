@@ -27,3 +27,7 @@ class Database(object):
             self.config.graph.create(rel)
         else:
             self.config.graph.create(item1)
+
+
+class UserDatabase(object):
+    pass

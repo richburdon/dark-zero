@@ -4,12 +4,23 @@
 
 import flask.views
 from flask import Flask
-from injector import inject
+from injector import inject, Module
 import json
 import os
 
 from config import Config
 from data import Database
+from service.oauth import OAuthRegistry
+import util
+
+
+# TODO(burdon): Dependency from core.
+@inject(app=util.FlaskWrapper)
+class ViewModule(Module):
+    def configure(self, binder):
+        self.app.add_view(HomeView)
+        self.app.add_view(AdminView)
+        self.app.add_view(DataView)
 
 
 @inject(config=Config)
@@ -22,7 +33,11 @@ class HomeView(flask.views.MethodView):
         return flask.render_template('home.html', config=self.config)
 
 
-@inject(config=Config, app=Flask)
+@inject(
+    app=Flask,
+    config=Config,
+    oauth_registry=OAuthRegistry
+)
 class AdminView(flask.views.MethodView):
 
     PATH = '/admin'

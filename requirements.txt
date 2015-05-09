@@ -1,7 +1,9 @@
 Flask
 Flask-Injector
-Flask-OAuth
 flask-environments
+Flask-OAuthlib
+Flask-Login
+Flask-GoogleLogin
 
 mock
 nose

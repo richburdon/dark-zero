@@ -5,33 +5,11 @@
 import flask
 from flask_environments import Environments
 from flask_injector import FlaskInjector
-from injector import inject, Module
-import logging
 import os
 
 from config import ConfigModule
-import util
-
-LOG = logging.getLogger('main')
-
-
-#
-# App config.
-#
-class AppModule(Module):
-    def configure(self, binder):
-        pass
-
-#
-# View config.
-#
-import view
-@inject(app=util.FlaskWrapper)
-class ViewModule(Module):
-    def configure(self, binder):
-        self.app.add_view(view.HomeView)
-        self.app.add_view(view.AdminView)
-        self.app.add_view(view.DataView)
+from view import ViewModule
+import service.twitter
 
 #
 # Flask App.
@@ -47,13 +25,12 @@ env.from_yaml(os.path.join(os.getcwd(), 'config/config.yml'))
 # https://github.com/alecthomas/injector
 FlaskInjector(app=app, modules=[
     ConfigModule,
-    AppModule,
     ViewModule,
+    service.twitter.ServiceModule
 ])
 
 #
 # Start-up.
 #
 if __name__ == '__main__':
-    LOG.info('Running...')
     app.run(host='0.0.0.0', port=app.config['PORT'])
