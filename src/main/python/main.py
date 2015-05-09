@@ -16,14 +16,14 @@ LOG = logging.getLogger('main')
 
 
 #
-# App config
+# App config.
 #
 class AppModule(Module):
     def configure(self, binder):
         pass
 
 #
-# View config
+# View config.
 #
 import view
 @inject(app=util.FlaskWrapper)
@@ -34,7 +34,7 @@ class ViewModule(Module):
         self.app.add_view(view.DataView)
 
 #
-# Flask App
+# Flask App.
 #
 app = flask.Flask(__name__, template_folder='templates')
 
@@ -42,7 +42,6 @@ app = flask.Flask(__name__, template_folder='templates')
 # https://pythonhosted.org/Flask-Environments
 env = Environments(app)
 env.from_yaml(os.path.join(os.getcwd(), 'config/config.yml'))
-
 
 # Flask injection modules.
 # https://github.com/alecthomas/injector

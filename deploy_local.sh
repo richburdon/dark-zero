@@ -29,6 +29,7 @@ docker build -t web .
 # Link database
 # https://docs.docker.com/userguide/dockerlinks
 docker run -d -p 8080 --link graphdb:graphdb --name web web
+# docker push richburdon/dark-zero
 echo ""
 
 # Test

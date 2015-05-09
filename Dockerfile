@@ -7,6 +7,7 @@
 # TODO(burdon): Grunt/docker
 # TODO(burdon): Get rid of pydeps?
 
+# TODO(burdon): Slim?
 # Base python image (includes tools)
 # https://registry.hub.docker.com/_/python/
 # https://registry.hub.docker.com/u/library/python/
@@ -19,8 +20,8 @@ MAINTAINER Alien Labs
 # TODO(burdon): restrict source?
 ADD . /app
 
-# Base dir
-WORKDIR /app/src/main/python
+# Base dir for build
+WORKDIR /app
 
 # Install Python modules
 RUN pip install -r requirements.txt
@@ -29,7 +30,8 @@ RUN pip install -r requirements.txt
 # NOTE: Port 80 requires sudo
 EXPOSE 8080
 
-# TODO(burdon): nginx
+# Base dir for server
+WORKDIR /app/src/main/python
+
 # Run the server
-#CMD ["python", "hello.py"]
 CMD ["python", "main.py"]
