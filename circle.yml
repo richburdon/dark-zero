@@ -1,0 +1,5 @@
+# https://circleci.com/docs/manually
+
+test:
+  override:
+    - python src/main/python/tests.py
