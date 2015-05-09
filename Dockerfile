@@ -5,8 +5,7 @@
 
 # TODO(burdon): Write up GUIDES (self contained docs).
 # TODO(burdon): Grunt/docker
-# TODO(burdon): Get rid of pydeps
-# TODO(burdon): Use vagrant to test locally?
+# TODO(burdon): Get rid of pydeps?
 
 # Base python image (includes tools)
 # https://registry.hub.docker.com/_/python/
@@ -17,11 +16,11 @@ FROM python:2.7.9
 # File Author
 MAINTAINER Alien Labs
 
-# Base dir
-WORKDIR /app
-
 # TODO(burdon): restrict source?
 ADD . /app
+
+# Base dir
+WORKDIR /app/src/main/python
 
 # Install Python modules
 RUN pip install -r requirements.txt
@@ -32,5 +31,5 @@ EXPOSE 8080
 
 # TODO(burdon): nginx
 # Run the server
-#CMD ["python", "src/main/python/hello.py"]
-CMD ["python", "src/main/python/main.py"]
+#CMD ["python", "hello.py"]
+CMD ["python", "main.py"]

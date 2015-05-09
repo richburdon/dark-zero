@@ -43,6 +43,7 @@ app = flask.Flask(__name__, template_folder='templates')
 env = Environments(app)
 env.from_yaml(os.path.join(os.getcwd(), 'config/config.yml'))
 
+
 # Flask injection modules.
 # https://github.com/alecthomas/injector
 FlaskInjector(app=app, modules=[
